@@ -2,7 +2,7 @@
 # What robot is being controlled
 MainRobot: Pepper
 # Enabled controllers
-Enabled: RandomGoalController
+Enabled: BolotnikovaController
 # Controller timestep (s)
 Timestep: 0.01
 
@@ -14,25 +14,21 @@ ObserverPipelines:
   - type: Encoder
 
 ControllerParams:
-  RandomSeed: 101458
-  AngleErrorTolerance: 3.0
-  JointNames: 
-    - "RShoulderPitch"
-    - "RShoulderRoll"
-    - "RElbowYaw"
-    - "RElbowRoll"
-  UpperLimits:
-    - 1.5707963
-    - -0.0087
-    - 1.5
-    - 1.5
-  LowerLimits:
-    - -1.5707963
-    - -0.5
-    - -1.5
-    - 0.01
-  URDFPath: "/home/laptop/pepper_ws/src/pepper_robot/pepper_description/urdf/pepper1.0_generated_urdf/pepper.urdf"
-  SRDFPath: "/home/laptop/pepper_ws/src/pepper_moveit_config/config/JulietteY20MP.srdf"
+  armPostureGoal:
+    LShoulderRoll: [1.1]
+    LWristYaw: [0.9]
+  inContactDuration: 0.5 #s
+  monitoredJoint: LShoulderRoll
+  residualThreshold: 0.2 # rad
+  pathToModel: "/home/laptop/mc_playground/controllers/bolotnikova_controller/models/LShoulderRoll.model"
+  # Order of features is important
+  features:
+    [[LShoulderRoll, alpha],
+    [LShoulderRoll, torque],
+    [LShoulderPitch, alpha],
+    [LShoulderPitch, alphaD],
+    [LShoulderPitch, torque],
+    [LShoulderRoll, alphaD]]
 
 # Set to true or false to enable/disable respectively
 Log: true
