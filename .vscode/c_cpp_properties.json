@@ -4,12 +4,12 @@
             "name": "Linux",
             "includePath": [
                 "${default}",
-                "/home/laptop/mc_playground/local/include/**",
+                "/home/laptop/catkin_ws/devel/include/**",
                 "/opt/ros/noetic/include/**"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/gcc",
-            "cStandard": "gnu17",
+            "cStandard": "c17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-x64",
             "configurationProvider": "ms-vscode.cmake-tools"

@@ -67,10 +67,13 @@
         "forward_list": "cpp",
         "hash_map": "cpp",
         "hash_set": "cpp",
-        "shared_mutex": "cpp"
+        "shared_mutex": "cpp",
+        "csignal": "cpp",
+        "codecvt": "cpp",
+        "__nullptr": "cpp"
     },
     "cmake.configureArgs": [
-        // "-DCMAKE_PREFIX_PATH=${env:CMAKE_PREFIX_PATH}:$HOME/mc_playground/local"
+        "-DCMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:$HOME/.local:$HOME/mc_playground/local:/home/laptop/catkin_ws/devel:/opt/ros/noetic"
     ],
     "cmake.installPrefix":"${env:HOME}/mc_playground/local",
     "cmake.buildArgs": [
@@ -78,4 +81,5 @@
         "16"
     ],
     "ros.distro": "noetic",
+    "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
 }

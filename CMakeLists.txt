@@ -1,29 +1,21 @@
 cmake_minimum_required(VERSION 3.1)
 
 set(CXX_DISABLE_WERROR 1)
-set(CMAKE_CXX_STANDARD 11)
-add_definitions(-std=c++11 -w -g)
+set(CMAKE_CXX_STANDARD 14)
+set(ENV{CUDACXX} "/usr/local/cuda-11.6/bin/nvcc")
+add_definitions(-std=c++14 -w -g)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 
-set(PROJECT_NAME RandomGoalController)
-set(PROJECT_DESCRIPTION "RandomGoalController")
+set(PROJECT_NAME Controllers)
+set(PROJECT_DESCRIPTION "Controllers")
 set(PROJECT_URL "")
 
 project(${PROJECT_NAME} CXX)
 
 find_package(mc_rtc REQUIRED)
-find_package(matplotlib_cpp REQUIRED)
-find_package(Python COMPONENTS Interpreter Development)
-# find_package(catkin REQUIRED COMPONENTS
-#   moveit_core
-#   moveit_msgs
-#   moveit_ros_planning
-#   moveit_ros_planning_interface
-# )
+find_package(roscpp REQUIRED)
+find_package(check_selfcollision REQUIRED HINTS "/home/laptop/catkin_ws/devel")
 
-
-add_subdirectory(src)
-
-set(AROBASE "@")
-configure_file(etc/RandomGoalController.in.yaml "${CMAKE_CURRENT_BINARY_DIR}/etc/RandomGoalController.yaml")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/etc/RandomGoalController.yaml" DESTINATION "${MC_CONTROLLER_INSTALL_PREFIX}/../../etc")
-
+# add_subdirectory(random_goal_controller)
+# add_subdirectory(residual_learning_controller)
+add_subdirectory(bolotnikova_controller)
