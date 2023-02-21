@@ -1,0 +1,51 @@
+---
+# What robot is being controlled
+MainRobot: Pepper
+# Enabled controllers
+Enabled: GravityController
+# Controller timestep (s)
+Timestep: 0.01
+
+# Load and run state observers.
+ObserverPipelines:
+  name: "PepperObserver"
+  gui: true
+  observers:
+  - type: Encoder
+
+ControllerParams:
+  RandomSeed: 101458
+  AngleErrorTolerance: 3.0
+  JointNames: 
+    - "RShoulderPitch"
+    - "RShoulderRoll"
+    - "RElbowYaw"
+    - "RElbowRoll"
+  UpperLimits:
+    - 1.5707963
+    - -0.0087
+    - 1.5
+    - 1.5
+  LowerLimits:
+    - -1.5707963
+    - -0.5
+    - -1.5
+    - 0.01
+  URDFPath: "/home/laptop/pepper_ws/src/pepper_robot/pepper_description/urdf/pepper1.0_generated_urdf/pepper.urdf"
+  SRDFPath: "/home/laptop/pepper_ws/src/pepper_moveit_config/config/JulietteY20MP.srdf"
+
+# Set to true or false to enable/disable respectively
+Log: true
+
+# LogDirectory dictates where the log files will be stored, defaults to
+# system temp directory
+LogDirectory: /tmp
+
+# The log file will have the name [LogTemplate]-[ControllerName]-[date].log
+LogTemplate: mc-control
+
+# Logging-related disk operations happen in a separate thread
+LogPolicy: threaded
+
+# ROS publishing time step
+PublishTimeStep: 0.02
